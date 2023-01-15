@@ -2,7 +2,7 @@
 
 namespace BulkyBook.Controllers
 {
-    public class CategoryController1 : Controller
+    public class CategoryController : Controller
     {
         public IActionResult Index()
         {
