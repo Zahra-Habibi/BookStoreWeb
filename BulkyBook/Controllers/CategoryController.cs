@@ -15,6 +15,12 @@ namespace BulkyBook.Controllers
         public IActionResult Index()
         {
             IEnumerable<Category> objcategory = _db.categories;
+            return View(objcategory);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
         }
     }
