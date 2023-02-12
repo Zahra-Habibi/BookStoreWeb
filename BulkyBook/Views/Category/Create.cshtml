@@ -1,5 +1,5 @@
 ﻿@model Category;
-<form method="post">
+<form method="post" asp-action="Create" asp-controller="Category">
     <div class="border p-3 mt-4">
         <div class="row mb-2 ">
             <h2 class="text-primary"> Create Category </h2>
@@ -11,11 +11,13 @@
              <input asp-for="Name" class="form-control" />
              <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+
         <div class="mb-3 ">
              <label asp-for="DisplayOrder"></label>
              <input asp-for="DisplayOrder" class="form-control" />
              <span asp-validation-for="DisplayOrder" class="text-danger"></span>
         </div>
+
         <button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
         <a asp-controller="Category" asp-action="Index" class="btn btn-secondary"  style="width:150px;">Got to list</a>
     </div>
