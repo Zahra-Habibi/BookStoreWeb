@@ -12,6 +12,7 @@ namespace BulkyBook.Controllers
             _db = db;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             IEnumerable<Category> objcategory = _db.categories;
@@ -20,6 +21,30 @@ namespace BulkyBook.Controllers
 
         [HttpGet]
         public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj)
+        {
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "The displayorder can not exactly match name.");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.categories.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+           
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
         {
             return View();
         }
