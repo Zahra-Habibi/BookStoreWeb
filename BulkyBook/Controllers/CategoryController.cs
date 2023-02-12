@@ -12,6 +12,7 @@ namespace BulkyBook.Controllers
             _db = db;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             IEnumerable<Category> objcategory = _db.categories;
@@ -40,6 +41,12 @@ namespace BulkyBook.Controllers
             }
             return View(obj);
            
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View();
         }
     }
 }
