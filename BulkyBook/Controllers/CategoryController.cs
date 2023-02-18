@@ -53,12 +53,13 @@ namespace BulkyBook.Controllers
             {
                 return NotFound();
             }
-            Category category = _db.categories.Find(id);
-            if(category == null)
+            //Category category = _db.categories.Find(id);
+            Category CategoryFromDbFirst=_db.categories.FirstOrDefault(c => c.Name == "id");
+            if(CategoryFromDbFirst == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(CategoryFromDbFirst);
         }
 
 
