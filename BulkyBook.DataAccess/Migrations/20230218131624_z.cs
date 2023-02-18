@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BulkyBook.Migrations
+namespace BulkyBook.DataAccess.Migrations
 {
-    public partial class bulky1 : Migration
+    public partial class z : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

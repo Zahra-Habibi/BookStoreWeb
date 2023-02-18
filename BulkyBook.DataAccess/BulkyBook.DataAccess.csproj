@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>Disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,11 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\NewFolder\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BulkyBook.DataAccess\BulkyBook.DataAccess.csproj" />
     <ProjectReference Include="..\BulkyBook.Models\BulkyBook.Models.csproj" />
   </ItemGroup>
 
