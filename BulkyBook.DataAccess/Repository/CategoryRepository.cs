@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BulkyBook.Data;
+using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,23 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.DataAccess.Repository
 {
-    internal class CategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
+        private readonly ApplicationDbContext _db;
+        public CategoryRepository(ApplicationDbContext db) :base(db)
+        {
+            _db = db;
+        }
+
+        public void Add()
+        {
+            _db.SaveChanges();
+
+        }
+
+        public void Update(Category obj)
+        {
+            _db.categories.Update(obj);
+        }
     }
 }
