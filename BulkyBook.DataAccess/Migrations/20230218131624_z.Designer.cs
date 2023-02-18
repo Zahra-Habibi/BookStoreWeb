@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BulkyBook.Migrations
+namespace BulkyBook.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230114154533_bulky1")]
-    partial class bulky1
+    [Migration("20230218131624_z")]
+    partial class z
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
