@@ -35,6 +35,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("Name", "The displayorder can not exactly match name.");
             }
+
             if (ModelState.IsValid)
             {
                 _db.Add(obj);
