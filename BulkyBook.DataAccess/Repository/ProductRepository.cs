@@ -1,4 +1,6 @@
 ﻿using BulkyBook.Data;
+using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.Models;
 using BulkyBook.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -9,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.DataAccess.Repository
 {
-    public class ProductRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         private readonly ApplicationDbContext _db;
-        public ProductRepository(ApplicationDbContext db)
+        public ProductRepository(ApplicationDbContext db):base(db)
         {
             _db = db;
         }
