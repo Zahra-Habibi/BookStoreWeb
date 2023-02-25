@@ -1,5 +1,4 @@
 ﻿using BulkyBook.Models;
-using BulkyBook.Models.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BulkyBook.Data
