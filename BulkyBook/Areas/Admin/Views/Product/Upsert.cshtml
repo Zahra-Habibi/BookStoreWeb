@@ -3,20 +3,62 @@
     Layout = "_Layout";
 }
 
-<form method="post" asp-action="Edit" asp-controller="Cover">
+<form method="post" asp-action="Upsert" asp-controller="Product">
     <div class="border p-3 mt-4">
         <div class="row mb-2 ">
-            <h2 class="text-primary"> Edit CoverType </h2>
+            <h2 class="text-primary"> Create Product </h2>
             <hr />
         </div>
 
         <div class="mb-3">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="    Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="    Description"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ISBN"></label>
+            <input asp-for="ISBN" class="form-control" />
+            <span asp-validation-for="ISBN" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ListPrice"></label>
+            <input asp-for="ListPrice" class="form-control" />
+            <span asp-validation-for="ListPrice" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="    Price50"></label>
+            <input asp-for="Price50" class="form-control" />
+            <span asp-validation-for="Price50" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="    Price100"></label>
+            <input asp-for="Price100" class="form-control" />
+            <span asp-validation-for="Price100" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:150px;">Edit</button>
-        <a asp-controller="Cover" asp-action="Index" class="btn btn-secondary" style="width:150px;">Got to list</a>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px;">Got to list</a>
     </div>
 </form>
