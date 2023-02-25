@@ -5,6 +5,8 @@ using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.DataAccess.Repository;
 using BulkyBook.DataAccess.Migrations;
 using BulkyBook.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
@@ -21,7 +23,7 @@ namespace BulkyBook.Areas.Admin.Controllers
         public IActionResult Index()
         {
 
-            IEnumerable<Product> objCategoryList = _unitOfWork.Product.GetAll();
+            IEnumerable<Product> objCategoryList = (IEnumerable<Product>)_unitOfWork.Product.GetAll();
             return View(objCategoryList);
         }
 
@@ -29,7 +31,23 @@ namespace BulkyBook.Areas.Admin.Controllers
         public IActionResult Upsert(int? id)
         {
             Product product = new();
-            if(id == null || id == 0)
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+                u=> new SelectListItem {
+                    Value =u.Id.ToString(),
+                    Text = u.Name
+
+                } 
+            );
+
+            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+               u => new SelectListItem
+               {
+                   Value = u.Id.ToString(),
+                   Text = u.Name
+
+               }
+           );
+            if (id == null || id == 0)
             {
                 //product = new Product();
                 return View(product);
