@@ -2,23 +2,24 @@
 using BulkyBook.Data;
 using Microsoft.AspNetCore.Mvc;
 using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.DataAccess.Repository;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CoverController : Controller
     {
-        private readonly ICoverTypeRepository _db;
-        public CoverController(ICoverTypeRepository db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CoverController(IUnitOfWork db)
         {
-            _db = db;
+            _unitOfWork = db;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            IEnumerable<CoverType> objcategory = _db.GetAll();
-            return View(objcategory);
+            IEnumerable<CoverType> objCategoryList = _unitOfWork.CoverType.GetAll();
+            return View(objCategoryList);
         }
 
         [HttpGet]
@@ -33,8 +34,9 @@ namespace BulkyBook.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Add(obj);
-                TempData["success"] = "CoverType create successfully.";
+                _unitOfWork.CoverType.Add(obj);
+                _unitOfWork.Save();
+                TempData["success"] = "CoverType created successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -48,13 +50,16 @@ namespace BulkyBook.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            //Category category = _db.categories.Find(id);
-            CoverType CategoryFromDbFirst = _db.GetFirstOrDefault(c => c.Id == id);
-            if (CategoryFromDbFirst == null)
+            //var categoryFromDb = _db.Categories.Find(id);
+            var categoryFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+            //var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
+
+            if (categoryFromDbFirst == null)
             {
                 return NotFound();
             }
-            return View(CategoryFromDbFirst);
+
+            return View(categoryFromDbFirst);
         }
 
 
@@ -62,30 +67,34 @@ namespace BulkyBook.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(CoverType obj)
         {
+   
             if (ModelState.IsValid)
             {
-                _db.Update(obj);
-                TempData["success"] = "CoverType Update successfully.";
+                _unitOfWork.CoverType.Update(obj);
+                _unitOfWork.Save();
+                TempData["success"] = "CoverType updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
 
         }
 
-
-        [HttpGet]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            CoverType category = _db.GetFirstOrDefault(c => c.Id == id);
-            if (category == null)
+            //var categoryFromDb = _db.Categories.Find(id);
+            var categoryFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+            //var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
+
+            if (categoryFromDbFirst == null)
             {
                 return NotFound();
             }
-            return View(category);
+
+            return View(categoryFromDbFirst);
         }
 
 
@@ -93,15 +102,18 @@ namespace BulkyBook.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.GetFirstOrDefault(c => c.Id == id);
+            var obj = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Remove(obj);
-            TempData["success"] = "Covertype Delete successfully.";
+
+            _unitOfWork.CoverType.Remove(obj);
+            _unitOfWork.Save();
+            TempData["success"] = "CoverType deleted successfully";
             return RedirectToAction("Index");
         }
+
 
     }
 }
