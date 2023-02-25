@@ -1,9 +1,10 @@
-﻿using BulkyBook.Models;
+﻿
 using BulkyBook.Data;
 using Microsoft.AspNetCore.Mvc;
 using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.DataAccess.Repository;
+using BulkyBook.DataAccess.Migrations;
 using BulkyBook.Models;
-using BulkyBook.Models.Models;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
@@ -19,11 +20,36 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IEnumerable<Product> productobj = _unitOfWork.Product.GetAll();
-            return View(productobj);
+
+            IEnumerable<Product> objCategoryList = _unitOfWork.Product.GetAll();
+            return View(objCategoryList);
         }
 
- 
+        [HttpGet]
+        public IActionResult Upsert(int? id)
+        {
+            Product product = new();
+            if(id == null || id == 0)
+            {
+                //product = new Product();
+                return View(product);
+            }
+            else
+            {
+
+            }
+            return View(product);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert(Product product)
+        {
+
+            return View(product);
+        }
+
 
     }
 }
