@@ -3,6 +3,7 @@ using BulkyBook.Data;
 using Microsoft.AspNetCore.Mvc;
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
+using BulkyBook.Models.Models;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
