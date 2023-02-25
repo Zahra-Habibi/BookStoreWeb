@@ -79,6 +79,7 @@ namespace BulkyBook.Areas.Admin.Controllers
 
         }
 
+
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -113,7 +114,6 @@ namespace BulkyBook.Areas.Admin.Controllers
             TempData["success"] = "CoverType deleted successfully";
             return RedirectToAction("Index");
         }
-
 
     }
 }
