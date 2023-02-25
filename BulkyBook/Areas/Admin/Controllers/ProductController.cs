@@ -50,6 +50,8 @@ namespace BulkyBook.Areas.Admin.Controllers
             if (id == null || id == 0)
             {
                 //product = new Product();
+                ViewBag.CategoryList = CategoryList;
+                ViewBag.CoverTypeList= CoverTypeList;
                 return View(product);
             }
             else
