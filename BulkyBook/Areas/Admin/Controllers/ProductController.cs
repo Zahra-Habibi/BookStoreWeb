@@ -51,7 +51,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             {
                 //product = new Product();
                 ViewBag.CategoryList = CategoryList;
-                ViewBag.CoverTypeList= CoverTypeList;
+                ViewData["CoverTypeList"] = CoverTypeList;
                 return View(product);
             }
             else
