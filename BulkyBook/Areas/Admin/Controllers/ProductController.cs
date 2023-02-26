@@ -7,6 +7,7 @@ using BulkyBook.DataAccess.Migrations;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using BulkyBook.Models.ViewModels;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
@@ -30,35 +31,36 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Upsert(int? id)
         {
-            Product product = new();
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
-                u=> new SelectListItem {
-                    Value =u.Id.ToString(),
-                    Text = u.Name
+            ProductVM productVM = new()
+            {
+                Product = new(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+            };
 
-                } 
-            );
-
-            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
-               u => new SelectListItem
-               {
-                   Value = u.Id.ToString(),
-                   Text = u.Name
-
-               }
-           );
             if (id == null || id == 0)
             {
-                //product = new Product();
-                ViewBag.CategoryList = CategoryList;
-                ViewData["CoverTypeList"] = CoverTypeList;
-                return View(product);
+                //create product
+                //ViewBag.CategoryList = CategoryList;
+                //ViewData["CoverTypeList"] = CoverTypeList;
+                return View(productVM);
             }
             else
             {
+                productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+                return View(productVM);
 
+                //update product
             }
-            return View(product);
+
         }
 
 
