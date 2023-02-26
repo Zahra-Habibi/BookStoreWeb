@@ -28,7 +28,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(objCategoryList);
         }
 
-        [HttpGet]
+        //GET
         public IActionResult Upsert(int? id)
         {
             ProductVM productVM = new()
@@ -44,7 +44,7 @@ namespace BulkyBook.Areas.Admin.Controllers
                     Text = i.Name,
                     Value = i.Id.ToString()
                 }),
-            };
+            }
 
             if (id == null || id == 0)
             {
@@ -61,7 +61,10 @@ namespace BulkyBook.Areas.Admin.Controllers
                 //update product
             }
 
+
         }
+
+
 
 
         [HttpPost]
