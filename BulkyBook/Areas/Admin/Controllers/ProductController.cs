@@ -8,6 +8,7 @@ using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using BulkyBook.Models.ViewModels;
+using Microsoft.Extensions.Hosting;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
@@ -15,9 +16,11 @@ namespace BulkyBook.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork db)
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public ProductController(IUnitOfWork db, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = db;
+            _hostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -68,15 +71,48 @@ namespace BulkyBook.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Product product,IFormFile file)
+        public IActionResult Upsert(Product obj,IFormFile file)
         {
             if (ModelState.IsValid)
             {
-               // _unitOfWork.CoverType.Update(product);
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\products");
+                    var extension = Path.GetExtension(file.FileName);
+
+                    if (obj.ImgUrl != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, obj.ImgUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    obj.ImgUrl = @"\images\products\" + fileName + extension;
+
+                }
+                if (obj.Id == 0)
+                {
+                    _unitOfWork.Product.Add(obj);
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(obj);
+                }
+                _unitOfWork.Save();
+                TempData["success"] = "Product created successfully";
+                return RedirectToAction("Index");
 
             }
 
-            return View(product);
+            return View(obj);
         }
 
 
