@@ -68,8 +68,13 @@ namespace BulkyBook.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Product product)
+        public IActionResult Upsert(Product product,IFormFile file)
         {
+            if (ModelState.IsValid)
+            {
+               // _unitOfWork.CoverType.Update(product);
+
+            }
 
             return View(product);
         }
