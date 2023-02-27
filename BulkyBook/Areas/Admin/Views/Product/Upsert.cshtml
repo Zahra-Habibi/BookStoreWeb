@@ -3,10 +3,10 @@
     Layout = "_Layout";
 }
 
-<form method="post" asp-action="Upsert" asp-controller="Product">
+<form method="post" asp-action="Upsert" asp-controller="Product" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
         <div class="row mb-2 ">
-            <h2 class="text-primary"> Create Product </h2>
+            <h2 class="text-primary">@(Model.Id !=0? "Update": "Create") Edit Product </h2>
             <hr />
         </div>
 
@@ -59,6 +59,11 @@
         </div>
 
         <div class="mb-3">
+			<label asp-for="ImgUrl"></label>
+			<input type="file" id="uploadBox" name="file" class="form-control" />
+		</div>
+
+        <div class="mb-3">
             <label asp-for="CategoryId"></label>
             <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select">
                <option disabled selected>
@@ -70,15 +75,43 @@
 
         <div class="mb-3">
             <label asp-for="CoverTypId"></label>
-            <select asp-for="CoverTypId" asp-items="@(ViewData[" CoverTypeList"] as IEnumerable<SelectListItem>)" class="form-select">
+            <select asp-for="CoverTypId" asp-items=" ViewBag.CoverTypeList " class="form-select">
                 <option disabled selected>
                     --select coverType--
                 </option>
             </select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
+        @if(Model.Id != 0){
 
-        <button type="submit" class="btn btn-primary" style="width:150px;">Edit</button>
+            <button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+        }
+        else{
+            <button type="submit" class="btn btn-primary" onclick="return ValidateInput()" style="width:150px;">Create</button>
+        }
+       
         <a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px;">Got to list</a>
     </div>
 </form>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please upload an Image!',
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
