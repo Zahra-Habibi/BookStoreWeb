@@ -31,32 +31,31 @@ namespace BulkyBook.Areas.Admin.Controllers
         //GET
         public IActionResult Upsert(int? id)
         {
-            ProductVM productVM = new()
-            {
-                Product = new(),
-                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
-                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
-            };
+            Product product = new();
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+                  u => new SelectListItem
+                  {
+                      Text = u.Name,
+                      Value = u.Id.ToString()
+                  });
+            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+                  u => new SelectListItem
+                  {
+                      Text = u.Name,
+                      Value = u.Id.ToString()
+                  });
 
             if (id == null || id == 0)
             {
                 //create product
-                //ViewBag.CategoryList = CategoryList;
-                //ViewData["CoverTypeList"] = CoverTypeList;
-                return View(productVM);
+                ViewBag.CategoryList = CategoryList;
+                ViewBag.CoverTypeList = CoverTypeList;
+                return View(product);
             }
             else
             {
-                productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
-                return View(productVM);
+                Product product1 = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+                return View(product1);
 
                 //update product
             }
