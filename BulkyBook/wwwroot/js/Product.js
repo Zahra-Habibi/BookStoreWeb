@@ -10,11 +10,11 @@ function loadDataTable() {
             "url": "/Admin/Product/GetAll"
         },
         "columns": [
-            { "data": "Title", "width": "15%" },
-            { "data": "ISBN", "width": "15%" },
-            { "data": "Price", "width": "15%" },
-            { "data": "Author", "width": "15%" },
-            { "data": "category", "width": "15%" },
+            { "data": "title", "width": "15%" },
+            { "data": "isbn", "width": "15%" },
+            { "data": "price", "width": "15%" },
+            { "data": "author", "width": "15%" },
+            { "data": "category.name", "width": "15%" },
             {
                 "data": "id",
                 "render": function (data) {

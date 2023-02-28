@@ -118,15 +118,14 @@ namespace BulkyBook.Areas.Admin.Controllers
    
     #region API CALLS
     [HttpGet]
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
-            return Json(new { data = productList });
-        }
+    public IActionResult GetAll()
+    {
+        var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+        return Json(new { data = productList });
+    }
 
-        //POST
-        [HttpDelete]
+    //POST
+    [HttpDelete]
     public IActionResult Delete(int? id)
     {
         var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
