@@ -96,6 +96,7 @@ namespace BulkyBook.Areas.Admin.Controllers
                     }
                     obj.ImgUrl = @"\images\products\" + fileName + extension;
 
+
                 }
                 if (obj.Id == 0)
                 {
@@ -145,6 +146,7 @@ namespace BulkyBook.Areas.Admin.Controllers
         return Json(new { success = true, message = "Delete Successful" });
 
     }
+
     #endregion
 }
 }
