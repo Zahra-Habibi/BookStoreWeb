@@ -39,6 +39,7 @@ namespace BulkyBook.Models
 
         [Required]
         [Range(1, 10000)]
+        [Display(Name ="price +100")]
         public double Price100 { get; set; }
 
         [ValidateNever]
