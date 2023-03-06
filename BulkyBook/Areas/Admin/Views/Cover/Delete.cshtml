@@ -1,11 +1,15 @@
 ﻿@model CoverType;
+
 <form asp-action="Delete" asp-controller="Cover">
     <div class="border p-3 mt-4">
+
         <div class="row mb-2 ">
             <h2 class="text-primary"> Delete CoverType </h2>
             <hr />
         </div>
+
         <input asp-for="Id" hidden />
+
         <div class="mb-3">
             <label asp-for="Name"></label>
             <input asp-for="Name" disabled class="form-control" />   
