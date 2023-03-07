@@ -15,6 +15,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             _unitOfWork = db;
         }
 
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -22,11 +23,13 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(objCategoryList);
         }
 
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -46,6 +49,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(obj);
 
         }
+
 
         [HttpGet]
         public IActionResult Edit(int? id)
@@ -85,6 +89,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(obj);
 
         }
+
 
         public IActionResult Delete(int? id)
         {
