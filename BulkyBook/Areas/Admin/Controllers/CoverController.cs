@@ -22,11 +22,13 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(objCategoryList);
         }
 
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -42,6 +44,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(obj);
 
         }
+
 
         [HttpGet]
         public IActionResult Edit(int? id)
