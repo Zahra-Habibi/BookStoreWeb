@@ -30,6 +30,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View();
         }
 
+
         //GET
         public IActionResult Upsert(int? id)
         {
@@ -64,8 +65,6 @@ namespace BulkyBook.Areas.Admin.Controllers
 
 
         }
-
-
 
 
         [HttpPost]
@@ -116,7 +115,6 @@ namespace BulkyBook.Areas.Admin.Controllers
         }
 
 
-   
     #region API CALLS
     [HttpGet]
     public IActionResult GetAll()
