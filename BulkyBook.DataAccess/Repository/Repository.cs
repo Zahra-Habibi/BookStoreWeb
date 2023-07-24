@@ -44,6 +44,7 @@ namespace BulkyBook.DataAccess.Repository
             return query.ToList();
         }
 
+        public IArgumentProvider ArgumentProvider { get; set; }
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
         {
             if (tracked)
