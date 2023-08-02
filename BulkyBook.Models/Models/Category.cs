@@ -14,7 +14,5 @@ namespace BulkyBook.Models
 
         public DateTime CreateDateTime { get; set; }=DateTime.Now;
 
-
-
     }
 }
