@@ -12,7 +12,7 @@ namespace BulkyBook.Models
 
         public int DisplayOrder { get; set; }
 
-        public DateTime CreateDateTime { get; set; }=DateTime.Now;
+        //public DateTime CreateDateTime { get; set; }=DateTime.Now;
 
     }
 }

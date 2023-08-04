@@ -3,6 +3,7 @@ using BulkyBook.Data;
 using Microsoft.AspNetCore.Mvc;
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.DataAccess.Repository;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
@@ -19,9 +20,12 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
-            return View(objCategoryList);
+            //IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
+            //return View(objCategoryList);
+            return View();
+
         }
+
 
 
         [HttpGet]
