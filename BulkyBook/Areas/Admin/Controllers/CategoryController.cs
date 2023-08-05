@@ -11,18 +11,20 @@ namespace BulkyBook.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryController(IUnitOfWork db)
+        private readonly ApplicationDbContext _appc;
+        public CategoryController(ApplicationDbContext db)
         {
-            _unitOfWork = db;
+            _appc = db;
         }
 
 
         [HttpGet]
         public IActionResult Index()
         {
+            List<Category> obg=_appc.categories.ToList();
             //IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
             //return View(objCategoryList);
-            return View();
+            return View(obg);
 
         }
 
