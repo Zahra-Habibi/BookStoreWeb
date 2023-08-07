@@ -41,10 +41,10 @@ namespace BulkyBook.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
-            //if (obj.Name == obj.DisplayOrder.ToString())
-            //{
-            //    ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
-            //}
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
+            }
             //if (ModelState.IsValid)
             //{
             //    _unitOfWork.Category.Add(obj);
@@ -52,9 +52,14 @@ namespace BulkyBook.Areas.Admin.Controllers
             //    TempData["success"] = "Category created successfully";
             //    return RedirectToAction("Index");
             //}
-            _appc.categories.Add(obj);
-            _appc.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _appc.categories.Add(obj);
+                _appc.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+          
 
         }
 
