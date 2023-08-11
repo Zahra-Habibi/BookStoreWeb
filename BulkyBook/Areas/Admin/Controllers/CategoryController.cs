@@ -56,6 +56,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             {
                 _appc.categories.Add(obj);
                 _appc.SaveChanges();
+                TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -101,7 +102,7 @@ namespace BulkyBook.Areas.Admin.Controllers
             {
                 _appc.categories.Update(obj);
                 _appc.SaveChanges();
-                //TempData["success"] = "Category updated successfully";
+                TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
