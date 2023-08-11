@@ -116,9 +116,14 @@ namespace BulkyBook.Areas.Admin.Controllers
                 return NotFound();
             }
             //var categoryFromDb = _db.Categories.Find(id);
-            var categoryFromDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-            //var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
+            //var categoryFromDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            ////var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
+            //if (categoryFromDbFirst == null)
+            //{
+            //    return NotFound();
+            //}
 
+            Category categoryFromDbFirst = _appc.categories.Find(id);
             if (categoryFromDbFirst == null)
             {
                 return NotFound();
@@ -132,14 +137,14 @@ namespace BulkyBook.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            Category obj = _appc.categories.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _unitOfWork.Category.Remove(obj);
-            _unitOfWork.Save();
+            _appc.categories.Remove(obj);
+            _appc.SaveChanges();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
