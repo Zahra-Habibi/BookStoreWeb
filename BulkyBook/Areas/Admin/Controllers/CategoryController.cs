@@ -72,9 +72,14 @@ namespace BulkyBook.Areas.Admin.Controllers
                 return NotFound();
             }
             //var categoryFromDb = _db.Categories.Find(id);
-            var categoryFromDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-            //var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
+            //var categoryFromDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            ////var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
 
+            //if (categoryFromDbFirst == null)
+            //{
+            //    return NotFound();
+            //}
+            Category categoryFromDbFirst = _appc.categories.Find(id);
             if (categoryFromDbFirst == null)
             {
                 return NotFound();
@@ -94,9 +99,9 @@ namespace BulkyBook.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Category updated successfully";
+                _appc.categories.Update(obj);
+                _appc.SaveChanges();
+                //TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
