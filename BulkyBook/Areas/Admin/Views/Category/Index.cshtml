@@ -21,26 +21,26 @@
                     <tr>
                         <th>Category Name</th>
                         <th>Display Order</th>
-                        <th></th>
+                        <th>Operations</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var obj in Model)
                     {
                         <tr>
-                            <td style="width:50%">
+                            <td >
                                 @obj.Name
                             </td>
-                            <td style="width:50%">
+                            <td >
                                 @obj.DisplayOrder
                             </td>
                             <td>
-                                <div class="w-100 btn-group" role="group">
-                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" type="button" class="btn btn-success">
-                                        <i class="bi bi-pencil-square"></i>
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" type="button" class="btn btn-success mx-2">
+                                        <i class="bi bi-pencil-square"></i>&nbsp; Edit
                                     </a>
                                     <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2 ">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="bi bi-trash-fill"></i>&nbsp;     Delete
                                     </a>
                                 </div>
                             </td>
