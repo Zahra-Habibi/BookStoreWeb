@@ -8,9 +8,9 @@ namespace BulkyBookRaza.Pages.Categories
 {
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDBContext _db;
         public List<Category> CategoryList { get; set; }
-        public IndexModel(ApplicationDbContext db)
+        public IndexModel(ApplicationDBContext db)
         {
             _db = db;
         }

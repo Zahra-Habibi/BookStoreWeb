@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BulkyBookRaza.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDBContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
 
         }

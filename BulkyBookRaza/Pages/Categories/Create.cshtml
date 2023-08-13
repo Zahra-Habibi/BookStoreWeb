@@ -1,7 +1,7 @@
 ﻿@page
 @model BulkyBookRaza.Pages.Categories.CreateModel
 
-<form method="post"  asp-page="/Categories/Create">
+<form method="post">
     <div class="border p-3 mt-4">
         <div class="row mb-2 ">
             <h2 class="text-primary"> Create Category </h2>
@@ -9,15 +9,15 @@
         </div>
      
         <div class="mb-3">
-             <label asp-for="Categories.Name"></label>
-            <input asp-for="Categories.Name" class="form-control" />
-            <span asp-validation-for="Categories.Name" class="text-danger"></span>
+             <label asp-for="Category.Name"></label>
+            <input asp-for="Category.Name" class="form-control" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3 ">
-            <label asp-for="Categories.DisplayOrder"></label>
-            <input asp-for="Categories.DisplayOrder" class="form-control" />
-            <span asp-validation-for="Categories.DisplayOrder" class="text-danger"></span>
+            <label asp-for="Category.DisplayOrder"></label>
+            <input asp-for="Category.DisplayOrder" class="form-control" />
+            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
