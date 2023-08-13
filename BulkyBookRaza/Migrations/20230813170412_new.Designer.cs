@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyBookRaza.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20230812134855_addrazorpage-project")]
-    partial class addrazorpageproject
+    [Migration("20230813170412_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
