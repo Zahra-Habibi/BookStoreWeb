@@ -8,22 +8,23 @@ namespace BulkyBookRaza.Pages.Categories
     [BindProperties]
     public class CreateModel : PageModel
     {
-        private readonly ApplicationDBContext _db;  
+        private readonly ApplicationDBContext _db;
+        [BindProperty]
         public Category Category { get; set; }
         public CreateModel(ApplicationDBContext db)
         {
             _db = db;
         }
+
         public void OnGet()
         {
         }
 
-        public IActionResult OnPost(Category obj)
+        public IActionResult OnPost()
         {
-            _db.categories.Add(obj);
+            _db.categories.Add(Category);
             _db.SaveChanges();
             return RedirectToPage("Index");
-
         }
     }
 }
